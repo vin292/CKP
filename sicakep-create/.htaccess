@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+# disable directory browsingOptions All -Indexes# PREVENT FOLDER LISTINGIndexIgnore *php_flag display_startup_errors onphp_flag display_errors onphp_flag html_errors onphp_flag log_errors onphp_flag ignore_repeated_errors offphp_flag ignore_repeated_source offphp_flag report_memleaks onphp_flag track_errors onphp_value error_reporting -1php_value log_errors_max_len 0 
+
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
